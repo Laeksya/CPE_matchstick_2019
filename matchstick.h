@@ -11,6 +11,12 @@
 #define  READ_SIZE 256
 #endif
 
+typedef struct
+{
+    int nb_line;
+    int *nb_matches;
+} map_t;
+
 //getnextline
 char *get_next_line(int fd);
 char *my_strcat(char **dest, char const *src);
@@ -23,8 +29,8 @@ char *get_next_line(int fd);
 int my_putstr(char const *str);
 int my_put_nbr(int nb);
 void my_putchar(char c);
-void display_triangle(int n);
-void player_instruction(int input_line, int input_matches);
+void display_map(map_t *map);
+void player_instruction(int input_line, int input_matches, map_t *map);
 
 int my_getnbr(char const *str);
 int my_isnb(char c);

@@ -37,11 +37,18 @@ int main(int ac, char **av)
 {
     int nb_line = my_getnbr(av[1]);
     int nb_matches = my_getnbr(av[2]);
+    map_t map;
 
     for (int i = 0; av[1][i] != '\0' && av[2][i] != '\0'; i++)
         if (ac != 3 || my_isnb(av[1][i]) == 0 || my_isnb(av[2][i]) == 0)
             return (84);
-    display_triangle(nb_line);
-    player_instruction(nb_line, nb_matches);
+    map.nb_line = nb_line;
+    map.nb_matches = malloc(sizeof(int) * nb_line);
+    for (int i = 0; i < nb_line; i++)
+        map.nb_matches[i] = 2 * i + 1;
+    for (;;) {
+        display_map(&map);
+        player_instruction(nb_line, nb_matches, &map);
+    }
     return (0);
 }
