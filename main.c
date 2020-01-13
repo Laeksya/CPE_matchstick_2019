@@ -36,8 +36,12 @@ int my_getnbr(char const *str)
 int main(int ac, char **av)
 {
     int nb_line = my_getnbr(av[1]);
-    if (ac != 3)
-        return(84);
+    int nb_matches = my_getnbr(av[2]);
+
+    for (int i = 0; av[1][i] != '\0' && av[2][i] != '\0'; i++)
+        if (ac != 3 || my_isnb(av[1][i]) == 0 || my_isnb(av[2][i]) == 0)
+            return (84);
     display_triangle(nb_line);
+    player_instruction(nb_line, nb_matches);
     return (0);
 }

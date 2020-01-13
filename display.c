@@ -24,40 +24,34 @@ int my_putstr(char const *str)
     return (i);
 }
 
-void instruction(void)
+int my_put_nbr(int nb)
 {
-    my_putstr("Your turn:\nLine: ");
-    char *line = get_next_line(0);
-    my_putstr("Matches: ");
-    char *matches = get_next_line(0);
+    if (nb < 0) {
+        my_putchar('-');
+        nb = nb * (-1);
+    }
+    if (nb >= 10) {
+        my_put_nbr(nb / 10);
+    }
+    my_putchar(nb % 10 + '0');
+    return (0);
+}
+
+void ia_instruction(void)
+{
+    my_putstr("AI's turn...");
+    my_putstr("AI removed ");
+    /* my_putstr(matches); */
+    my_putstr(" match(es) from line ");
+    /* my_putstr(line); */
+    my_putchar('\n');
+}
+
+void next_instruction(char *matches, char *line)
+{
     my_putstr("Player removed ");
     my_putstr(matches);
     my_putstr(" match(es) from line ");
     my_putstr(line);
     my_putchar('\n');
-}
-
-void display_triangle(int n)
-{
-    int i = 0;
-    int j = 0;
-
-    for (i = 0; i < 1 + (2 * n); i++)
-        my_putchar('*');
-    my_putchar('\n');
-    for (i = 1; i <= n; i++) {
-        my_putchar('*');
-        for (j = 0; j < n - i; j++)
-            my_putchar(' ');
-        for ( j = 0; j < (2 * i - 1); j++)
-            my_putchar('|');
-         for (j = 0; j < n - i; j++)
-            my_putchar(' ');
-        my_putchar('*');
-        my_putchar('\n');
-    }
-    for (i = 0; i < 1 + (2 * n); i++)
-         my_putchar('*');
-    my_putchar('\n');
-    instruction();
 }

@@ -21,7 +21,14 @@ char *get_next_line(int fd);
 
 //display
 int my_putstr(char const *str);
+int my_put_nbr(int nb);
 void my_putchar(char c);
 void display_triangle(int n);
+void player_instruction(int input_line, int input_matches);
+
+int my_getnbr(char const *str);
+int my_isnb(char c);
+
+void next_instruction(char *matches, char *line);
 
 #endif /* !MATCHSTICK_H_ */
