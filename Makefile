@@ -7,9 +7,10 @@
 
 NAME	=	matchstick
 
-SRC	=	main.c			\
-		display.c 		\
-		get_next_line.c \
+SRC	=	main.c				\
+		error_handling.c	\
+		display.c 			\
+		get_next_line.c 	\
 		matchstick.c
 
 CFLAGS +=	-Wextra -Wall

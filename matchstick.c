@@ -20,6 +20,7 @@ void player_instruction(int input_line, int input_matches, map_t *map)
     char *matches = get_next_line(0);
     int nb_matches = my_getnbr(matches);
     after_wrong_matches(input_matches, matches, nb_matches);
+    not_enough_matches(map, input_matches, matches, input_line);
     next_instruction(matches, line);
     map->nb_matches[nb_lines - 1] -= nb_matches;
 }

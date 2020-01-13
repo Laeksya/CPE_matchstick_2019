@@ -37,5 +37,7 @@ int my_isnb(char c);
 
 void next_instruction(char *matches, char *line);
 void after_wrong_matches(int input_matches, char *matches, int nb_matches);
+void not_enough_matches(map_t *map, int input_matches, char *matches,
+int input_line);
 
 #endif /* !MATCHSTICK_H_ */
