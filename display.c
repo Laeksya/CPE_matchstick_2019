@@ -47,6 +47,22 @@ int my_put_nbr(int nb)
      my_putstr(line);
     my_putchar('\n');
 } */
+void after_wrong_matches(int input_matches, char *matches, int nb_matches)
+{   if (nb_matches > input_matches) {
+        my_putstr("Error: you cannot remove more than ");
+        my_put_nbr(input_matches);
+        my_putstr(" matches per turn\n");
+        my_putstr("Matches: ");
+        matches = get_next_line(0);
+    }
+    if (nb_matches < 0) {
+        my_putstr("Error: you have to remove at least one match");
+        my_put_nbr(input_matches);
+        my_putstr(" matches per turn\n");
+        my_putstr("Matches: ");
+        matches = get_next_line(0);
+    }
+}
 
 void next_instruction(char *matches, char *line)
 {

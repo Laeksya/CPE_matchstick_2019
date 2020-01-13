@@ -19,13 +19,7 @@ void player_instruction(int input_line, int input_matches, map_t *map)
     my_putstr("Matches: ");
     char *matches = get_next_line(0);
     int nb_matches = my_getnbr(matches);
-    if (nb_matches > input_matches || nb_lines < 0) {
-       my_putstr("Error: you cannot remove more than ");
-       my_put_nbr(input_matches);
-       my_putstr(" matches per turn\n");
-       my_putstr("Matches: ");
-       matches = get_next_line(0);
-    }
+    after_wrong_matches(input_matches, matches, nb_matches);
     next_instruction(matches, line);
     map->nb_matches[nb_lines - 1] -= nb_matches;
 }

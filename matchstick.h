@@ -36,5 +36,6 @@ int my_getnbr(char const *str);
 int my_isnb(char c);
 
 void next_instruction(char *matches, char *line);
+void after_wrong_matches(int input_matches, char *matches, int nb_matches);
 
 #endif /* !MATCHSTICK_H_ */
