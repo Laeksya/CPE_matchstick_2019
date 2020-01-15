@@ -36,8 +36,10 @@ int my_getnbr(char const *str);
 int my_isnb(char c);
 
 void next_instruction(char *matches, char *line);
-void after_wrong_matches(int input_matches, char *matches, int nb_matches);
+void error(map_t *map, int input_matches, int nb_matches, int input_line);
 void not_enough_matches(map_t *map, int input_matches, char *matches,
 int input_line);
+void ia(map_t *map);
+int rand_line(int nb);
 
 #endif /* !MATCHSTICK_H_ */

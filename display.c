@@ -46,3 +46,23 @@ void next_instruction(char *matches, char *line)
     my_putstr(line);
     my_putchar('\n');
 }
+
+void display_map(map_t *map)
+{
+    for (int i = 0; i < 1 + (2 * map->nb_line); i++)
+        my_putchar('*');
+    my_putchar('\n');
+    for (int i = 0; i < map->nb_line; i++) {
+        my_putchar('*');
+        for (int j = 0; j < map->nb_line - i - 1; j++)
+            my_putchar(' ');
+        for (int j = 0; j < map->nb_matches[i]; j++)
+            my_putchar('|');
+        for (int j = 0; j < map->nb_line + i - map->nb_matches[i]; j++)
+            my_putchar(' ');
+        my_putstr("*\n");
+    }
+    for (int i = 0; i < 1 + (2 * map->nb_line); i++)
+        my_putchar('*');
+    my_putchar('\n');
+}

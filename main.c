@@ -7,6 +7,7 @@
 
 #include <stdlib.h>
 #include <unistd.h>
+#include <time.h>
 #include "matchstick.h"
 
 int my_isnb(char c)
@@ -39,6 +40,7 @@ int main(int ac, char **av)
     int nb_matches = my_getnbr(av[2]);
     map_t map;
 
+    srand(time(NULL));
     for (int i = 0; av[1][i] != '\0' && av[2][i] != '\0'; i++)
         if (ac != 3 || my_isnb(av[1][i]) == 0 || my_isnb(av[2][i]) == 0)
             return (84);
