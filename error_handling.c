@@ -44,7 +44,7 @@ int not_enough_matches(int nb_matches, int nb_lines, map_t *map)
 
 int rand_line(int nb)
 {
-    int line = random()%(nb-1) + 1;
+    int line = random() % (nb - 1) + 1;
 
     return (line);
 }
