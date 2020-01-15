@@ -37,7 +37,8 @@ int my_isnb(char c);
 
 void next_instruction(char *matches, char *line);
 void error(map_t *map, int input_matches, int nb_matches, int input_line);
-void not_enough_matches(map_t *map, int input_matches, char *matches,
+int not_enough_matches(int nb_matches, int nb_lines, map_t *map);
+void invalid_input(map_t *map, int input_matches, char *matches,
 int input_line);
 void ia(map_t *map);
 int rand_line(int nb);

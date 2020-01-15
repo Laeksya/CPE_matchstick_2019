@@ -8,7 +8,7 @@
 #include "matchstick.h"
 #include <stdlib.h>
 
-void not_enough_matches(map_t *map, int input_matches, char *matches,
+void invalid_input(map_t *map, int input_matches, char *matches,
 int input_line)
 {
     for (int i = 0; i < my_strlen(matches); i++) {
@@ -17,10 +17,6 @@ int input_line)
             player_instruction(input_line, input_matches, map);
         }
     }
-    /* if (input_matches > map->nb_matches[input_line]) {
-        my_putstr("Error: not enough matches on this line\n");
-        player_instruction(input_line, input_matches, map);
-    } */
 }
 
 void error(map_t *map, int input_matches, int nb_matches, int input_line)
@@ -35,6 +31,15 @@ void error(map_t *map, int input_matches, int nb_matches, int input_line)
         my_putstr("Error: you have to remove at least one match\n");
         player_instruction(input_line, input_matches, map);
     }
+}
+
+int not_enough_matches(int nb_matches, int nb_lines, map_t *map)
+{
+    if (nb_matches > map->nb_matches[nb_lines]) {
+        my_putstr("Error: not enough matches on this line\n");
+        return (1);
+    }
+    return (0);
 }
 
 int rand_line(int nb)

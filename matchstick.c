@@ -21,7 +21,9 @@ void player_instruction(int input_line, int input_matches, map_t *map)
     char *matches = get_next_line(0);
     int nb_matches = my_getnbr(matches);
     error(map, input_matches, nb_matches, input_line);
-    not_enough_matches(map, input_matches, matches, input_line);
+    if (not_enough_matches(nb_matches, nb_lines, map) == 1)
+        player_instruction(input_line, input_matches, map);
+    invalid_input(map, input_matches, matches, input_line);
     next_instruction(matches, line);
     map->nb_matches[nb_lines - 1] -= nb_matches;
     display_map(map);
