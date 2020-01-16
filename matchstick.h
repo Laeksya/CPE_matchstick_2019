@@ -30,7 +30,7 @@ int my_putstr(char const *str);
 int my_put_nbr(int nb);
 void my_putchar(char c);
 void display_map(map_t *map);
-void player_instruction(int input_line, int input_matches, map_t *map);
+int player_instruction(int input_line, int input_matches, map_t *map);
 
 int my_getnbr(char const *str);
 int my_isnb(char c);

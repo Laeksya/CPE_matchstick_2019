@@ -51,6 +51,8 @@ int main(int ac, char **av)
     for (;;) {
         display_map(&map);
         player_instruction(nb_line, nb_matches, &map);
+        if (player_instruction(nb_line, nb_matches, &map) == 33)
+            break;
     }
     return (0);
 }

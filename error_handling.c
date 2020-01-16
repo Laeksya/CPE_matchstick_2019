@@ -8,7 +8,7 @@
 #include "matchstick.h"
 #include <stdlib.h>
 
-void invalid_input(map_t *map, int input_matches, char *matches,
+/* void invalid_input(map_t *map, int input_matches, char *matches,
 int input_line)
 {
     for (int i = 0; i < my_strlen(matches); i++) {
@@ -17,7 +17,7 @@ int input_line)
             player_instruction(input_line, input_matches, map);
         }
     }
-}
+} */
 
 void error(map_t *map, int input_matches, int nb_matches, int input_line)
 {
