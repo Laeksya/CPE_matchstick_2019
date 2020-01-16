@@ -29,7 +29,7 @@ fclean: clean
 		rm -f $(NAME)
 		rm -f *.gcno
 		rm -f *.gcda
-		rm -f vscode*
+		rm -f *.vscode
 
 re:	fclean all
 
