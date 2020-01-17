@@ -42,9 +42,8 @@ void next_instruction(char *matches, char *line)
 {
     my_putstr("Player removed ");
     my_putstr(matches);
-    my_putstr(" match(es) from line ");
+    my_putstr("match(es) from line ");
     my_putstr(line);
-    my_putchar('\n');
 }
 
 void display_map(map_t *map)

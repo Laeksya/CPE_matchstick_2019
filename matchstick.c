@@ -11,7 +11,6 @@
 
 int player_instruction(int input_line, int input_matches, map_t *map)
 {
-    my_putstr("Your turn:\n");
     my_putstr("Line: ");
     __ssize_t return_getline = 0;
     char *line = malloc(sizeof(char) * 1);
@@ -32,26 +31,27 @@ int player_instruction(int input_line, int input_matches, map_t *map)
     next_instruction(matches, line);
     map->nb_matches[nb_lines - 1] -= nb_matches;
     display_map(map);
-    ia(map, nb_lines, nb_matches);
+    ia(map);
 
 }
 
-int ia(map_t *map, int nb_lines, int nb_matches)
+int ia(map_t *map)
 {
-    int matches = 1;
-    int line = 0;
+    int nb_matches = 1;
+    int nb_line = 0;
 
-    line = rand_line(map->nb_line);
-    if (map->nb_matches == 0)
-        line = rand_line(map->nb_line);
+    nb_line = rand_line(map->nb_line);
+    while (nb_matches > map->nb_matches[nb_line - 1])
+        nb_line = rand_line(map->nb_line);
     my_putstr("AI's turn...\n");
     my_putstr("AI removed ");
-    my_put_nbr(matches);
+    my_put_nbr(nb_matches);
     my_putstr(" match(es) from line ");
-    my_put_nbr(line);
+    my_put_nbr(nb_line);
     my_putchar('\n');
-    map->nb_matches[nb_lines - 1] -= nb_matches;
+    map->nb_matches[nb_line - 1] -= nb_matches;
     display_map(map);
+    my_putstr("Your turn:\n");
     return (0);
 }
 

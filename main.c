@@ -62,6 +62,7 @@ int main(int ac, char **av)
         map.nb_matches[i] = 2 * i + 1;
     for (;;) {
         display_map(&map);
+        my_putstr("Your turn:\n");
         player_instruction(nb_line, nb_matches, &map);
         if (player_instruction(nb_line, nb_matches, &map) == 33)
             break;

@@ -33,7 +33,7 @@ int not_enough_matches(int nb_matches, int nb_lines, map_t *map);
 void invalid_input(map_t *map, int input_matches, char *matches,
 int input_line);
 void wrong_line(int input_line, int input_matches, int nb_lines, map_t *map);
-int ia(map_t *map, int nb_lines, int nb_matches);
+int ia(map_t *map);
 int rand_line(int nb);
 
 #endif /* !MATCHSTICK_H_ */
