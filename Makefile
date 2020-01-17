@@ -10,7 +10,7 @@ NAME	=	matchstick
 SRC	=	main.c				\
 		error_handling.c	\
 		display.c 			\
-		get_next_line.c 	\
+		my_strlen.c 		\
 		matchstick.c
 
 CFLAGS +=	-Wextra -Wall
