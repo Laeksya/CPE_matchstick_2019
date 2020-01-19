@@ -28,10 +28,12 @@ int player_instruction(int input_line, int input_matches, map_t *map)
     error(map, input_matches, nb_matches, input_line);
     if (not_enough_matches(nb_matches, nb_lines, map) == 1)
         player_instruction(input_line, input_matches, map);
-    next_instruction(matches, line);
-    map->nb_matches[nb_lines - 1] -= nb_matches;
-    display_map(map);
-    player_islosing(map);
+    else {
+        next_instruction(matches, line);
+        map->nb_matches[nb_lines - 1] -= nb_matches;
+        display_map(map);
+        player_islosing(map);
+    }
 }
 
 int ia(map_t *map)
@@ -45,12 +47,8 @@ int ia(map_t *map)
     my_printf("%s%i", "AI's turn...\nAI removed ", nb_matches);
     my_printf(" match(es) from line %i\n", nb_line);
     map->nb_matches[nb_line - 1] -= nb_matches;
-    display_map(map);
     if (check_victory(map) == 1)
         map->victory = 1;
-    else
-        my_printf("Your turn:\n");
-    return (0);
 }
 
 int check_victory(map_t *map)

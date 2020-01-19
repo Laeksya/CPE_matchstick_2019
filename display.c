@@ -37,13 +37,12 @@ void display_map(map_t *map)
 void gameloop(int nb_line, int nb_matches, map_t *map)
 {
     for (;;) {
-            display_map(map);
-            my_putstr("Your turn:\n");
-            player_instruction(nb_line, nb_matches, map);
-            if (player_instruction(nb_line, nb_matches, map) == 33 || \
-            map->victory != 0)
-                break;
-        }
+        display_map(map);
+        my_putstr("Your turn:\n");
+        if (player_instruction(nb_line, nb_matches, map) == 33 || \
+        map->victory != 0)
+            break;
+    }
 }
 
 void player_islosing(map_t *map)
