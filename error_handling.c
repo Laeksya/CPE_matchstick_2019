@@ -11,7 +11,7 @@
 void invalid_input(map_t *map, int input_matches, char *matches,
 int input_line)
 {
-    for (int i = 0; matches[i] != '\0'; i++)
+    for (int i = 0; matches[i] != '\n'; i++)
         if (!(matches[i] >= '0' &&  matches[i] <= '9')) {
             my_putstr("Error: invalid input (positive number expected)\n");
             player_instruction(input_line, input_matches, map);

@@ -7,43 +7,11 @@
 
 #include <unistd.h>
 #include "matchstick.h"
-
-void my_putchar(char c)
-{
-    write(1, &c, 1);
-}
-
-int my_putstr(char const *str)
-{
-    int i = 0;
-
-    while (str[i] != '\0') {
-        my_putchar(str[i]);
-        i++;
-    }
-    return (i);
-}
-
-int my_put_nbr(int nb)
-{
-    if (nb == -2147483648)
-        my_putstr("-2147483648");
-    if (nb < 0) {
-        my_putchar('-');
-        nb = nb * (-1);
-    }
-    if (nb >= 10)
-        my_put_nbr(nb / 10);
-    my_putchar(nb % 10 + '0');
-    return (0);
-}
+#include "my_printf/my.h"
 
 void next_instruction(char *matches, char *line)
 {
-    my_putstr("Player removed ");
-    my_putstr(matches);
-    my_putstr("match(es) from line ");
-    my_putstr(line);
+    my_printf("Player removed %s%s%s", matches, "match(es) from line ", line);
 }
 
 void display_map(map_t *map)
@@ -64,4 +32,24 @@ void display_map(map_t *map)
     for (int i = 0; i < 1 + (2 * map->nb_line); i++)
         my_putchar('*');
     my_putchar('\n');
+}
+
+void gameloop(int nb_line, int nb_matches, map_t *map)
+{
+    for (;;) {
+            display_map(map);
+            my_putstr("Your turn:\n");
+            player_instruction(nb_line, nb_matches, map);
+            if (player_instruction(nb_line, nb_matches, map) == 33 || \
+            map->victory != 0)
+                break;
+        }
+}
+
+void player_islosing(map_t *map)
+{
+    if (check_victory(map) == 1)
+        map->victory = 2;
+    else
+        ia(map);
 }

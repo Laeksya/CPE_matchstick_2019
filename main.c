@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include <time.h>
 #include "matchstick.h"
+#include "my_printf/my.h"
 
 int my_isnb(char c)
 {
@@ -43,7 +44,6 @@ int error_arg(int ac, char **av)
         if (my_isnb(av[1][i]) == 0 || my_isnb(av[2][i]) == 0)
             return (84);
     return (0);
-
 }
 
 int main(int ac, char **av)
@@ -57,15 +57,11 @@ int main(int ac, char **av)
     nb_line = my_getnbr(av[1]);
     nb_matches = my_getnbr(av[2]);
     map.nb_line = nb_line;
+    map.victory = 0;
     map.nb_matches = malloc(sizeof(int) * nb_line);
     for (int i = 0; i < nb_line; i++)
         map.nb_matches[i] = 2 * i + 1;
-    for (;;) {
-        display_map(&map);
-        my_putstr("Your turn:\n");
-        player_instruction(nb_line, nb_matches, &map);
-        if (player_instruction(nb_line, nb_matches, &map) == 33)
-            break;
-    }
+    gameloop(nb_line, nb_matches, &map);
+    victory_message(&map);
     return (0);
 }

@@ -12,6 +12,7 @@ typedef struct
 {
     int nb_line;
     int *nb_matches;
+    int victory;
 } map_t;
 
 //display
@@ -35,5 +36,9 @@ int input_line);
 void wrong_line(int input_line, int input_matches, int nb_lines, map_t *map);
 int ia(map_t *map);
 int rand_line(int nb);
+int check_victory(map_t *map);
+int victory_message(map_t *map);
+void gameloop(int nb_lines, int nb_matches, map_t *map);
+void player_islosing(map_t *map);
 
 #endif /* !MATCHSTICK_H_ */

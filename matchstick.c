@@ -8,10 +8,11 @@
 #include "matchstick.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "my_printf/my.h"
 
 int player_instruction(int input_line, int input_matches, map_t *map)
 {
-    my_putstr("Line: ");
+    my_printf("Line: ");
     __ssize_t return_getline = 0;
     char *line = malloc(sizeof(char) * 1);
     size_t size = 1;
@@ -20,19 +21,17 @@ int player_instruction(int input_line, int input_matches, map_t *map)
         return (33);
     int nb_lines = my_getnbr(line);
     wrong_line(input_line, input_matches, nb_lines, map);
-    my_putstr("Matches: ");
+    my_printf("Matches: ");
     char *matches = malloc(sizeof(char) * 1);
     getline(&matches, &size, stdin);
     int nb_matches = my_getnbr(matches);
-    /* invalid_input(map, input_matches, matches, input_line); */
     error(map, input_matches, nb_matches, input_line);
     if (not_enough_matches(nb_matches, nb_lines, map) == 1)
         player_instruction(input_line, input_matches, map);
     next_instruction(matches, line);
     map->nb_matches[nb_lines - 1] -= nb_matches;
     display_map(map);
-    ia(map);
-
+    player_islosing(map);
 }
 
 int ia(map_t *map)
@@ -42,27 +41,34 @@ int ia(map_t *map)
 
     nb_line = rand_line(map->nb_line);
     while (nb_matches > map->nb_matches[nb_line - 1])
-        nb_line = rand_line(map->nb_line);
-    my_putstr("AI's turn...\n");
-    my_putstr("AI removed ");
-    my_put_nbr(nb_matches);
-    my_putstr(" match(es) from line ");
-    my_put_nbr(nb_line);
-    my_putchar('\n');
+        nb_line = rand_line(map->nb_line + 1);
+    my_printf("%s%i", "AI's turn...\nAI removed ", nb_matches);
+    my_printf(" match(es) from line %i\n", nb_line);
     map->nb_matches[nb_line - 1] -= nb_matches;
     display_map(map);
-    my_putstr("Your turn:\n");
+    if (check_victory(map) == 1)
+        map->victory = 1;
+    else
+        my_printf("Your turn:\n");
     return (0);
 }
 
-int my_str_isnum(char const *str)
+int check_victory(map_t *map)
 {
-    int i = 0;
-
-    while (str[i] != '\0') {
-        if (!('0' <= str[i] && str[i] >= '9'))
-        return (0);
-    i++;
-    }
+    for (int i = 0; i <= map->nb_line; i++)
+        if (map->nb_matches[i] != 0)
+            return (0);
     return (1);
+}
+
+int victory_message(map_t *map)
+{
+    if (map->victory == 2) {
+        my_printf("You lost, too bad...\n");
+        return (2);
+    }
+    if (map->victory == 1) {
+        my_putstr("I lost... snif... but I'll get you next time!!\n");
+        return (1);
+    }
 }
