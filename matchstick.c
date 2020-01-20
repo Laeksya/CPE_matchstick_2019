@@ -25,6 +25,7 @@ int player_instruction(int input_line, int input_matches, map_t *map)
     char *matches = malloc(sizeof(char) * 1);
     getline(&matches, &size, stdin);
     int nb_matches = my_getnbr(matches);
+    invalid_input(map, input_matches, matches, input_line);
     error(map, input_matches, nb_matches, input_line);
     if (not_enough_matches(nb_matches, nb_lines, map) == 1)
         player_instruction(input_line, input_matches, map);
