@@ -14,16 +14,19 @@ int player_instruction(int input_line, int input_matches, map_t *map)
 {
     my_printf("Line: ");
     __ssize_t return_getline = 0;
-    char *line = malloc(sizeof(char) * 1);
+    char *line = NULL;
     size_t size = 1;
     return_getline = getline(&line, &size, stdin);
-    if (return_getline == EOF)
+    if (return_getline <= 0)
         return (33);
     int nb_lines = my_getnbr(line);
     wrong_line(input_line, input_matches, nb_lines, map);
+    invalid_input_line(map, input_matches, line, input_line);
     my_printf("Matches: ");
     char *matches = malloc(sizeof(char) * 1);
-    getline(&matches, &size, stdin);
+    return_getline = getline(&matches, &size, stdin);
+    if (return_getline <= 0)
+        return (33);
     int nb_matches = my_getnbr(matches);
     invalid_input(map, input_matches, matches, input_line);
     error(map, input_matches, nb_matches, input_line);

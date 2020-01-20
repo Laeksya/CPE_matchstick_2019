@@ -40,5 +40,7 @@ int check_victory(map_t *map);
 int victory_message(map_t *map);
 void gameloop(int nb_lines, int nb_matches, map_t *map);
 void player_islosing(map_t *map);
+void invalid_input_line(map_t *map, int input_matches, char *line,
+int input_line);
 
 #endif /* !MATCHSTICK_H_ */

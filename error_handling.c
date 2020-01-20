@@ -18,6 +18,16 @@ int input_line)
         }
 }
 
+void invalid_input_line(map_t *map, int input_matches, char *line,
+int input_line)
+{
+    for (int i = 0; line[i] != '\n'; i++)
+        if (!(line[i] >= '0' &&  line[i] <= '9')) {
+            my_putstr("Error: invalid input (positive number expected)\n");
+            player_instruction(input_line, input_matches, map);
+        }
+}
+
 void error(map_t *map, int input_matches, int nb_matches, int input_line)
 {
     if (nb_matches > input_matches) {
@@ -26,7 +36,7 @@ void error(map_t *map, int input_matches, int nb_matches, int input_line)
         my_putstr(" matches per turn\n");
         player_instruction(input_line, input_matches, map);
     }
-    if (nb_matches < 0) {
+    if (nb_matches <= 0) {
         my_putstr("Error: you have to remove at least one match\n");
         player_instruction(input_line, input_matches, map);
     }
@@ -43,15 +53,12 @@ int not_enough_matches(int nb_matches, int nb_lines, map_t *map)
 
 void wrong_line(int input_line, int input_matches, int nb_lines, map_t *map)
 {
-    if (nb_lines > input_line || nb_lines < 0) {
+    if (nb_lines > input_line) {
         my_putstr("Error: this line is out of range\n");
         player_instruction(input_line, input_matches, map);
     }
-}
-
-int rand_line(int nb)
-{
-    int line = random() % (nb - 1) + 1;
-
-    return (line);
+    if (nb_lines <= 0) {
+        my_putstr("Error: this line is out of range\n");
+        player_instruction(input_line, input_matches, map);
+    }
 }

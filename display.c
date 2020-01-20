@@ -52,3 +52,10 @@ void player_islosing(map_t *map)
     else
         ia(map);
 }
+
+int rand_line(int nb)
+{
+    int line = random() % (nb - 1) + 1;
+
+    return (line);
+}
