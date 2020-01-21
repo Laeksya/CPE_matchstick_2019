@@ -10,6 +10,15 @@
 #include <stdio.h>
 #include "my_printf/my.h"
 
+int display_next_instructions(int nb_lines, int nb_matches, map_t *map)
+{
+    next_instruction(nb_matches, nb_lines);
+    map->nb_matches[nb_lines - 1] -= nb_matches;
+    display_map(map);
+    player_islosing(map);
+    return (0);
+}
+
 int player_instruction(int input_line, int input_matches, map_t *map)
 {
     my_printf("Line: ");
@@ -32,12 +41,8 @@ int player_instruction(int input_line, int input_matches, map_t *map)
     error(map, input_matches, nb_matches, input_line);
     if (not_enough_matches(nb_matches, nb_lines, map) == 1)
         player_instruction(input_line, input_matches, map);
-    else {
-        next_instruction(nb_matches, nb_lines);
-        map->nb_matches[nb_lines - 1] -= nb_matches;
-        display_map(map);
-        player_islosing(map);
-    }
+    else
+        display_next_instructions(nb_lines, nb_matches, map);
 }
 
 int ia(map_t *map)
@@ -53,6 +58,7 @@ int ia(map_t *map)
     map->nb_matches[nb_line - 1] -= nb_matches;
     if (check_victory(map) == 1)
         map->victory = 1;
+    return (0);
 }
 
 int check_victory(map_t *map)
@@ -73,4 +79,5 @@ int victory_message(map_t *map)
         my_putstr("I lost... snif... but I'll get you next time!!\n");
         return (1);
     }
+    return (0);
 }

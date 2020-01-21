@@ -6,6 +6,7 @@
 */
 
 #include <unistd.h>
+#include <stdlib.h>
 #include "matchstick.h"
 #include "my_printf/my.h"
 

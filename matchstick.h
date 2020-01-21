@@ -21,6 +21,7 @@ int my_put_nbr(int nb);
 void my_putchar(char c);
 void display_map(map_t *map);
 int player_instruction(int input_line, int input_matches, map_t *map);
+int display_next_instructions(int nb_lines, int nb_matches, map_t *map);
 
 //check nb
 int my_getnbr(char const *str);
