@@ -33,7 +33,7 @@ int player_instruction(int input_line, int input_matches, map_t *map)
     if (not_enough_matches(nb_matches, nb_lines, map) == 1)
         player_instruction(input_line, input_matches, map);
     else {
-        next_instruction(matches, line);
+        next_instruction(nb_matches, nb_lines);
         map->nb_matches[nb_lines - 1] -= nb_matches;
         display_map(map);
         player_islosing(map);

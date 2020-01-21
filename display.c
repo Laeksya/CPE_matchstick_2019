@@ -9,9 +9,9 @@
 #include "matchstick.h"
 #include "my_printf/my.h"
 
-void next_instruction(char *matches, char *line)
+void next_instruction(int matches, int line)
 {
-    my_printf("Player removed %s%s%s", matches, "match(es) from line ", line);
+    my_printf("Player removed %d match(es) from line %d\n", matches, line);
 }
 
 void display_map(map_t *map)

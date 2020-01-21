@@ -28,7 +28,7 @@ int my_str_isnum(char const *str);
 int my_isnb(char c);
 
 //matchstick
-void next_instruction(char *matches, char *line);
+void next_instruction(int matches, int line);
 void error(map_t *map, int input_matches, int nb_matches, int input_line);
 int not_enough_matches(int nb_matches, int nb_lines, map_t *map);
 void invalid_input(map_t *map, int input_matches, char *matches,
