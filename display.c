@@ -33,6 +33,7 @@ void display_map(map_t *map)
     for (int i = 0; i < 1 + (2 * map->nb_line); i++)
         my_putchar('*');
     my_putchar('\n');
+    my_putchar('\n');
 }
 
 void gameloop(int nb_line, int nb_matches, map_t *map)

@@ -55,6 +55,8 @@ int main(int ac, char **av)
     if (error_arg(ac, av) == 84)
         return (84);
     nb_line = my_getnbr(av[1]);
+    if (nb_line <= 1 || nb_line >= 100)
+        return (84);
     nb_matches = my_getnbr(av[2]);
     map.nb_line = nb_line;
     map.victory = 0;
