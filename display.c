@@ -49,8 +49,9 @@ void gameloop(int nb_line, int nb_matches, map_t *map)
 
 void player_islosing(map_t *map)
 {
-    if (check_victory(map) == 1)
+    if (check_victory(map) == 1) {
         map->victory = 2;
+    }
     else
         ia(map);
 }
