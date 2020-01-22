@@ -50,10 +50,13 @@ void gameloop(int nb_line, int nb_matches, map_t *map)
 void player_islosing(map_t *map)
 {
     if (check_victory(map) == 1) {
+        display_mapv(map);
         map->victory = 2;
     }
-    else
+    else {
+        display_map(map);
         ia(map);
+    }
 }
 
 int rand_line(int nb)

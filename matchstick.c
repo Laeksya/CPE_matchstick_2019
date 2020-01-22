@@ -14,7 +14,6 @@ int display_next_instructions(int nb_lines, int nb_matches, map_t *map)
 {
     next_instruction(nb_matches, nb_lines);
     map->nb_matches[nb_lines - 1] -= nb_matches;
-    display_map(map);
     player_islosing(map);
     return (0);
 }
@@ -29,17 +28,18 @@ int player_instruction(int input_line, int input_matches, map_t *map)
     if (return_getline <= 0)
         return (33);
     int nb_lines = my_getnbr(line);
-    wrong_line(input_line, input_matches, nb_lines, map);
-    invalid_input_line(map, input_matches, line, input_line);
+    if (wrong_line(input_line, input_matches, nb_lines, map) == 1 ||
+    invalid_input_line(map, input_matches, line, input_line) == 1)
+        player_instruction(input_line, input_matches, map);
     char *matches = NULL;
     my_printf("Matches: ");
     return_getline = getline(&matches, &size, stdin);
     if (return_getline <= 0)
         return (33);
     int nb_matches = my_getnbr(matches);
-    invalid_input(map, input_matches, matches, input_line);
-    error(map, input_matches, nb_matches, input_line);
-    if (not_enough_matches(nb_matches, nb_lines, map) == 1)
+    if (not_enough_matches(nb_matches, nb_lines, map) == 1 ||  error(map,
+     input_matches, nb_matches, input_line) == 1 || invalid_input(map,
+     input_matches, matches, input_line) == 1)
         player_instruction(input_line, input_matches, map);
     else
         display_next_instructions(nb_lines, nb_matches, map);

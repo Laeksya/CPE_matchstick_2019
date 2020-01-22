@@ -31,18 +31,18 @@ int my_isnb(char c);
 
 //matchstick
 void next_instruction(int matches, int line);
-void error(map_t *map, int input_matches, int nb_matches, int input_line);
+int error(map_t *map, int input_matches, int nb_matches, int input_line);
 int not_enough_matches(int nb_matches, int nb_lines, map_t *map);
-void invalid_input(map_t *map, int input_matches, char *matches,
+int invalid_input(map_t *map, int input_matches, char *matches,
 int input_line);
-void wrong_line(int input_line, int input_matches, int nb_lines, map_t *map);
+int wrong_line(int input_line, int input_matches, int nb_lines, map_t *map);
 int ia(map_t *map);
 int rand_line(int nb);
 int check_victory(map_t *map);
 int victory_message(map_t *map);
 void gameloop(int nb_lines, int nb_matches, map_t *map);
 void player_islosing(map_t *map);
-void invalid_input_line(map_t *map, int input_matches, char *line,
+int invalid_input_line(map_t *map, int input_matches, char *line,
 int input_line);
 
 #endif /* !MATCHSTICK_H_ */

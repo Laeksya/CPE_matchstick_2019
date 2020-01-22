@@ -85,5 +85,5 @@ int main(int ac, char **av)
         map.nb_matches[i] = 2 * i + 1;
     gameloop(nb_line, nb_matches, &map);
     victory_message(&map);
-    return (0);
+    return (map.victory);
 }
