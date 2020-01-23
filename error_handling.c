@@ -19,8 +19,7 @@ int input_line)
     return (0);
 }
 
-int invalid_input_line(map_t *map, int input_matches, char *line,
-int input_line)
+int invalid_input_line(map_t *map, int input_matches, char *line)
 {
     for (int i = 0; line[i] != '\n'; i++)
         if (!(line[i] >= '0' &&  line[i] <= '9')) {
@@ -30,7 +29,7 @@ int input_line)
     return (0);
 }
 
-int error(map_t *map, int input_matches, int nb_matches, int input_line)
+int error(int input_matches, int nb_matches)
 {
     if (nb_matches > input_matches) {
         my_putstr("Error: you cannot remove more than ");
@@ -54,17 +53,15 @@ int not_enough_matches(int nb_matches, int nb_lines, map_t *map)
     return (0);
 }
 
-int wrong_line(int input_line, int input_matches, int nb_lines, map_t *map)
+int wrong_line(int input_line, int nb_lines)
 {
     if (nb_lines > input_line) {
         my_putstr("Error: this line is out of range\n");
-        player_instruction(input_line, input_matches, map);
         return (1);
     }
     if (nb_lines <= 0) {
         my_putstr("Error: this line is out of range\n");
-        player_instruction(input_line, input_matches, map);
-    return (1);
+        return (1);
     }
     return (0);
 }

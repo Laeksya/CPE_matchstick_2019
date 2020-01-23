@@ -15,7 +15,7 @@ int my_putnbr_unsigned(unsigned int nb);
 int my_strlen(char const *str);
 void flags(char const *str, va_list ap, int c);
 int my_printf(const char *format, ...);
-void print_X(va_list ap);
+void print_xb(va_list ap);
 void print_c(va_list ap);
 void print(va_list ap);
 void print_o(va_list ap);

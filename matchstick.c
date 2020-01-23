@@ -20,29 +20,36 @@ int display_next_instructions(int nb_lines, int nb_matches, map_t *map)
 
 int player_instruction(int input_line, int input_matches, map_t *map)
 {
-    my_printf("Line: ");
-    __ssize_t return_getline = 0;
     char *line = NULL;
     size_t size = 1;
-    return_getline = getline(&line, &size, stdin);
-    if (return_getline <= 0)
-        return (33);
-    int nb_lines = my_getnbr(line);
-    if (wrong_line(input_line, input_matches, nb_lines, map) == 1 ||
-    invalid_input_line(map, input_matches, line, input_line) == 1)
-        player_instruction(input_line, input_matches, map);
+    int nb_lines = 0;
+    int err = 0;
+    int nb_matches = 0;
     char *matches = NULL;
-    my_printf("Matches: ");
-    return_getline = getline(&matches, &size, stdin);
-    if (return_getline <= 0)
-        return (33);
-    int nb_matches = my_getnbr(matches);
-    if (not_enough_matches(nb_matches, nb_lines, map) == 1 ||  error(map,
-     input_matches, nb_matches, input_line) == 1 || invalid_input(map,
-     input_matches, matches, input_line) == 1)
-        player_instruction(input_line, input_matches, map);
-    else
-        display_next_instructions(nb_lines, nb_matches, map);
+
+    do {
+        err = 0;
+        my_printf("Line: ");
+        if (getline(&line, &size, stdin) <= 0)
+            return (33);
+        nb_lines = my_getnbr(line);
+        if (invalid_input_line(map, input_matches, line) == 1 ||
+        wrong_line(input_line, nb_lines) == 1)
+            err = 1;
+    } while (err);
+    do {
+        err = 0;
+        my_printf("Matches: ");
+        if (getline(&matches, &size, stdin) <= 0)
+            return (33);
+        nb_matches = my_getnbr(matches);
+        if (not_enough_matches(nb_matches, nb_lines, map) == 1 ||
+        error(input_matches, nb_matches) == 1 || invalid_input(map,
+        input_matches, matches, input_line) == 1)
+        err = 1;
+    } while (err);
+    display_next_instructions(nb_lines, nb_matches, map);
+    return (0);
 }
 
 int ia(map_t *map)

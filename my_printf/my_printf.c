@@ -13,7 +13,7 @@ void flags(char const *str, va_list ap, int c)
 {
     char flags[10] = "sdiuXxcob%";
 
-    void(*function[10])() = {print_s, print_d, print_i, print_u, print_X,
+    void(*function[10])() = {print_s, print_d, print_i, print_u, print_xb,
         print_x, print_c, print_o, print_b, print};
     for (int z = 0; flags[z] != '\0'; z++) {
         if (flags[z] == str[c])
