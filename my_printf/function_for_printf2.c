@@ -19,6 +19,7 @@ void print_c(va_list ap)
 
 void print(va_list ap)
 {
+    (void)(ap);
     my_putchar('%');
 }
 

@@ -45,12 +45,12 @@ int my_getnbr(char const *str)
     int i = 0;
 
     for (; str[i] == '+' || str[i] == '-'; i++)	{
-    	if (str[i] == '-')
+        if (str[i] == '-')
             sign *= -1;
     }
     for (; str[i] == ' '; ++i);
     for (; str[i] != '\0' && my_isnb(str[i]); i++) {
-    	res = res * 10 + str[i] - '0';
+        res = res * 10 + str[i] - '0';
     }
     return (sign * res);
 }
