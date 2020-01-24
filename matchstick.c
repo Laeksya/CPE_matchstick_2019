@@ -34,11 +34,10 @@ int player_instruction(int input_line, int input_matches, map_t *map)
             return (33);
         nb_lines = my_getnbr(line);
         if (invalid_input_line(map, input_matches, line) == 1 ||
-        wrong_line(input_line, nb_lines) == 1)
+        wrong_line(input_line, nb_lines) == 1) {
             err = 1;
-    } while (err);
-    do {
-        err = 0;
+            continue;
+        }
         my_printf("Matches: ");
         if (getline(&matches, &size, stdin) <= 0)
             return (33);
@@ -46,7 +45,7 @@ int player_instruction(int input_line, int input_matches, map_t *map)
         if (not_enough_matches(nb_matches, nb_lines, map) == 1 ||
         error(input_matches, nb_matches) == 1 || invalid_input(map,
         input_matches, matches, input_line) == 1)
-        err = 1;
+            err = 1;
     } while (err);
     display_next_instructions(nb_lines, nb_matches, map);
     return (0);
